@@ -29,6 +29,7 @@ import javax.swing.JTextField;
  */
 public class Client extends JFrame implements ActionListener, KeyListener{
     
+    // Declaração de variáveis e atributos da interface gráfica
     private static final long serialVersionUID = 1L;
     private JTextArea texto;
     private JTextField txMsg;
@@ -36,7 +37,10 @@ public class Client extends JFrame implements ActionListener, KeyListener{
     private JButton btSair;    
     private JLabel lbTitulo;
     private JLabel lbMsg;
-    private JPanel pnlContent;
+    private JPanel painel;
+    private JLabel porta;
+    private JLabel ip;
+    private JLabel nick;
     private Socket socket;
     private OutputStream ou ;
     private Writer write; 
@@ -48,14 +52,20 @@ public class Client extends JFrame implements ActionListener, KeyListener{
     
     
     
+    // Método construtor
+    // Definido o ip - no caso, localhost - e a porta do server - 10001
+    // O usuário informa o seu nome
     public Client() throws IOException{                  
     JLabel lblMessage = new JLabel("Dados de conexao");
+    JLabel ip = new JLabel("IP:");
     txIP = new JTextField("127.0.0.1");
+    JLabel porta = new JLabel("Porta:");
     txPorta = new JTextField("10001");
-    txNome = new JTextField("Informe seu nome");                
-    Object[] texts = {lblMessage, txIP, txPorta, txNome };  
-        JOptionPane.showMessageDialog(null, texts);              
-     pnlContent = new JPanel();
+    JLabel nickname = new JLabel("Nome: ");
+    txNome = new JTextField();                
+    Object[] texts = {lblMessage,ip, txIP, porta, txPorta, nickname, txNome };  
+        JOptionPane.showMessageDialog(null, texts);             
+     painel = new JPanel();
      texto = new JTextArea(10,40);
      texto.setEditable(false);
      txMsg = new JTextField(40);
@@ -71,15 +81,15 @@ public class Client extends JFrame implements ActionListener, KeyListener{
      txMsg.addKeyListener(this);
         JScrollPane scroll = new JScrollPane(texto);
      texto.setLineWrap(true);  
-     pnlContent.add(lbTitulo);
-     pnlContent.add(scroll);
-     pnlContent.add(lbMsg);
-     pnlContent.add(txMsg);
-     pnlContent.add(btSair);
-     pnlContent.add(btSend);
+     painel.add(lbTitulo);
+     painel.add(scroll);
+     painel.add(lbMsg);
+     painel.add(txMsg);
+     painel.add(btSair);
+     painel.add(btSend);
                                                        
      setTitle(txNome.getText());
-     setContentPane(pnlContent);
+     setContentPane(painel);
      setLocationRelativeTo(null);
      setResizable(false);
      setSize(500,300);
@@ -87,6 +97,8 @@ public class Client extends JFrame implements ActionListener, KeyListener{
      setDefaultCloseOperation(EXIT_ON_CLOSE);
 }
     
+    // Método que conecta o usuário ao servidor
+
   public void conectar() throws IOException{
                           
   socket = new Socket(txIP.getText(),Integer.parseInt(txPorta.getText()));
@@ -97,6 +109,7 @@ public class Client extends JFrame implements ActionListener, KeyListener{
   bufferWriter.flush();
 }
   
+  // Método que envia mensagens
    public void sendMSG (String msg) throws IOException{
                           
     if(msg.equals("Sair")){
@@ -105,6 +118,9 @@ public class Client extends JFrame implements ActionListener, KeyListener{
     }else{
       bufferWriter.write(msg+"\r\n");
       mensagem = txMsg.getText();
+      // Aqui faz a verificação do número de caracteres
+      // Se maior que 140, abre uma tela informando que 
+      // ultrapassou o limite
       if(mensagem.length()>140)
       {
         JOptionPane.showMessageDialog(null,"A mensagem possui mais de 140 caracteres");
@@ -116,6 +132,7 @@ public class Client extends JFrame implements ActionListener, KeyListener{
      txMsg.setText("");        
 }
    
+   // Aqui recebe as mensagens
    public void recebeMSG() throws IOException{
                           
        InputStream input = socket.getInputStream();
@@ -134,6 +151,7 @@ public class Client extends JFrame implements ActionListener, KeyListener{
         }
 }
    
+   // Método sair fecha os streams
    public void sair() throws IOException{
                           
     sendMSG("Sair");
@@ -157,6 +175,7 @@ public class Client extends JFrame implements ActionListener, KeyListener{
      }                       
 }
    
+  // Método que recebe as ações dos botões da tela do chat
    @Override
 public void keyPressed(KeyEvent e) {
                
@@ -170,6 +189,7 @@ public void keyPressed(KeyEvent e) {
    }                       
 }
    
+   // Método que habilita o botão "Enter" para o envio de mensagens
 @Override
 public void keyReleased(KeyEvent arg0) {
   // TODO Auto-generated method stub               
@@ -180,14 +200,13 @@ public void keyTyped(KeyEvent arg0) {
   // TODO Auto-generated method stub               
 } 
 
+  // Método principal - cria um novo cliente e define os métodos 
+// de conexão e recebimento de mensagens
   public static void main(String []args) throws IOException{
               
    Client client = new Client();
    client.conectar();
    client.recebeMSG();
 }     
-
-
-    
     
 }
