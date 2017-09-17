@@ -21,16 +21,21 @@ import javax.swing.JTextField;
 public class Server extends Thread{
 
 	// Declaração das variáveis da classe
-	// o Array clients 
+	// o Array clients guarda o BufferedWriter de cada cliente
+	//conectado... O BufferedWriter é uma classe para escrita em arquivos de texto
     private static ArrayList<BufferedWriter>clients;           
     private static ServerSocket server; 
     private String nome;
     private Socket conexao;
+    // Responsável pela leitura de bytes
     private InputStream input;  
     private InputStreamReader inputReader;  
+    // BufferedReader faz a leitura do texto
     private BufferedReader bufferReader;
     
     
+    //Método construtor da classe
+    // O parâmetro é um socket
     public Server(Socket conexao){
         this.conexao = conexao;
          try {
@@ -42,6 +47,10 @@ public class Server extends Thread{
         }                          
     }
     
+
+    // Método run, acionado quando um cliente conecta-se ao servidor
+    // O cliente é alocado em uma thread
+    // O método faz a verificação de mensagens novas, para enviar aos clientes
   public void run(){
                       
   try{
@@ -56,7 +65,7 @@ public class Server extends Thread{
     while(!"Sair".equalsIgnoreCase(mensagem) && mensagem != null)
       {           
        mensagem = bufferReader.readLine();
-       sendToAll(bufferWriter, mensagem);
+       enviarMSG(bufferWriter, mensagem);
        System.out.println(mensagem);                                              
        }                                   
    }catch (Exception e) {
@@ -64,8 +73,9 @@ public class Server extends Thread{
    }                       
 }
   
-  //servidor recebe e manda msg ara todos os clientes conectados
-public void sendToAll(BufferedWriter bwSaida, String mensagem) throws  IOException 
+  //servidor recebe e manda msg ara todos os clientes conectados, por meio de uma cópia da mensagem
+	// para cada cliente
+public void enviarMSG(BufferedWriter bwSaida, String mensagem) throws  IOException 
 {
   BufferedWriter bwS;
    
@@ -78,6 +88,8 @@ public void sendToAll(BufferedWriter bwSaida, String mensagem) throws  IOExcepti
   }          
 }
 
+// Configuração e inicialização do servidor...
+// Porta utilizada é a 10001
 public static void main(String []args) {
    
   try{
@@ -95,8 +107,8 @@ public static void main(String []args) {
        System.out.println("Aguardando conexão...");
        Socket conexao = server.accept();
        System.out.println("Cliente conectado...");
-       Thread t = new Server(conexao);
-        t.start();   
+       Thread thread = new Server(conexao);
+        thread.start();   
     }
                              
   }catch (Exception e) {
