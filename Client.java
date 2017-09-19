@@ -48,7 +48,7 @@ public class Client extends JFrame implements ActionListener, KeyListener{
     private JTextField txIP;
     private JTextField txPorta;
     private JTextField txNome;  
-    private String mensagem;
+   
     
     
     
@@ -111,23 +111,21 @@ public class Client extends JFrame implements ActionListener, KeyListener{
   
   // Método que envia mensagens
    public void sendMSG (String msg) throws IOException{
-                          
-    if(msg.equals("Sair")){
+    // Aqui faz a verificação do tamanho da mensagem.
+    // Caso seja maior que 140 caracteres    
+    // o sistema emite um alerta, através de uma janela de diálogo 
+    // e a mensagem é descartada.                 
+   if (msg.length()> 140){
+        JOptionPane.showMessageDialog(null,"A mensagem possui mais de 140 caracteres");
+        txMsg.setText(null);
+    } else if(msg.equals("Sair")){
       bufferWriter.write("Desconectado \r\n");
       texto.append("Desconectado \r\n");
     }else{
       bufferWriter.write(msg+"\r\n");
-      mensagem = txMsg.getText();
-      // Aqui faz a verificação do número de caracteres
-      // Se maior que 140, abre uma tela informando que 
-      // ultrapassou o limite
-      if(mensagem.length()>140)
-      {
-        JOptionPane.showMessageDialog(null,"A mensagem possui mais de 140 caracteres");
-      } else {
-          texto.append( txNome.getText() + " diz -> " + txMsg.getText()+"\r\n");
-        }
+      texto.append( txNome.getText() + " diz -> " + txMsg.getText()+"\r\n");
     }
+    
      bufferWriter.flush();
      txMsg.setText("");        
 }
