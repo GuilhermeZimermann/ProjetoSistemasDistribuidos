@@ -1,4 +1,4 @@
-
+﻿
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -159,6 +159,7 @@ public class Client extends JFrame implements ActionListener, KeyListener{
     socket.close();
  }
    
+ // Método que recebe as ações dos botões da tela do chat
    public void actionPerformed(ActionEvent e) {
          
   try {
@@ -172,8 +173,8 @@ public class Client extends JFrame implements ActionListener, KeyListener{
           e1.printStackTrace();
      }                       
 }
-   
-  // Método que recebe as ações dos botões da tela do chat
+    
+ // Método que habilita o botão "Enter" para o envio de mensagens
    @Override
 public void keyPressed(KeyEvent e) {
                
@@ -187,7 +188,7 @@ public void keyPressed(KeyEvent e) {
    }                       
 }
    
-   // Método que habilita o botão "Enter" para o envio de mensagens
+ 
 @Override
 public void keyReleased(KeyEvent arg0) {
   // TODO Auto-generated method stub               
