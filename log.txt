@@ -1,0 +1,72 @@
+commit 306770f61c389ac45e4bdd0a0485ccf8751383f3 (HEAD -> master, origin/master)
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Fri Sep 22 18:27:36 2017 -0300
+
+    Arquivos Descrição e README
+
+commit 821b2918eedbc302fd9344e3e4fa4adfd65c0b67
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Tue Sep 19 19:45:17 2017 -0300
+
+    Últimas correções - Conclusão
+
+commit bdfacc9edc300b8121295670b0e164307435a324
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Tue Sep 19 19:32:02 2017 -0300
+
+    Correção na verificação de caracteres da mensagem
+
+commit 1fdb0f0e35cfd2d809fd3f80c659b11795ab6ca5
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 20:47:48 2017 -0300
+
+    Alterações na classe Server.java - comentários
+
+commit 25bb4a2685afc364ed07b9d1b521413e94fc6bbb
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 20:47:13 2017 -0300
+
+    Alterações na classe Client.java - comentários
+
+commit 45706de359bf729468369f1e92faba20a720050d
+Merge: 1a1e33e c89d7eb
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 19:48:48 2017 -0300
+
+    Merge branch 'master' of https://github.com/GuilhermeZimermann/ProjetoSistemasDistribuidos
+
+commit 1a1e33e4a01b2fab646f24c886c86d26e37e5e2e
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 19:36:48 2017 -0300
+
+    Deletados arquivos
+
+commit 4b87d7618b3fd5fd6d6eb20def1099109e8ee610
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 19:25:07 2017 -0300
+
+    Nova classe Server
+
+commit bcbc05d33ea4d74e8d2ec2964f74e0df451fa72b
+Author: Guilherme <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 19:08:03 2017 -0300
+
+    Nova classe Client, já com interface gráfica
+
+commit c89d7ebca7afe0f27c2fcb2660d13356f17b1f6f
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 19:05:22 2017 -0300
+
+    Arquivos deletados
+
+commit 376f87a9e2532daab17b696e6a5eae42bbe22fe1
+Author: GuilhermeZimermann <guilhermezimermann@gmail.com>
+Date:   Sun Sep 17 19:05:09 2017 -0300
+
+    Arquivos deletados
+
+commit 3ab7918cdd785994b86083150138049e65b9cf68
+Author: Guilherme <guilhermezimermann@gmail.com>
+Date:   Sun Sep 10 16:03:55 2017 -0300
+
+    Arquivos baseados nos códigos apresentados em aula
